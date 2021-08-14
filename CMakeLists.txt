@@ -282,6 +282,10 @@ else()
 endif()
 
 if(MSVC)
+    set_target_properties(openttd PROPERTIES COMPILE_FLAGS /await:strict)
+endif()
+
+if(MSVC)
     # Add DPI manifest to project; other WIN32 targets get this via ottdres.rc
     target_sources(openttd PRIVATE "${CMAKE_SOURCE_DIR}/os/windows/openttd.manifest")
 endif()

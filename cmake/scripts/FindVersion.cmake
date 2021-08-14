@@ -87,6 +87,9 @@ if(GIT_FOUND AND EXISTS "${CMAKE_SOURCE_DIR}/.git")
         set(HASHSUFFIX "-u")
     endif()
 
+    # Override tags so that we can play normally
+    set(TAG "jgrpp-0.42.3")
+
     # Set the version string
     if(NOT TAG STREQUAL "")
         set(REV_VERSION "${TAG}")

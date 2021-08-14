@@ -92,6 +92,8 @@
 
 #include "safeguards.h"
 
+#include "auto_upgrade.h"
+
 #ifdef __EMSCRIPTEN__
 #	include <emscripten.h>
 #	include <emscripten/html5.h>
@@ -1806,6 +1808,7 @@ void StateGameLoop()
 		RunTileLoop();
 		CallVehicleTicks();
 		CallLandscapeTick();
+		AutoUpgradeRailType::OnTick();
 		BasePersistentStorageArray::SwitchMode(PSM_LEAVE_GAMELOOP);
 		UpdateLandscapingLimits();
 
@@ -1840,6 +1843,10 @@ void StateGameLoop()
 			CallVehicleTicks();
 			CallLandscapeTick();
 		}
+		Backup<CompanyID> auto_upgrade_backup(_current_company, cur_company.GetOriginalValue(), FILE_LINE);
+		AutoUpgradeRailType::OnTick();
+		auto_upgrade_backup.Restore();
+
 		BasePersistentStorageArray::SwitchMode(PSM_LEAVE_GAMELOOP);
 
 #ifndef DEBUG_DUMP_COMMANDS

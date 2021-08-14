@@ -55,6 +55,8 @@ add_files(
     autoreplace_gui.h
     autoreplace_type.h
     autoslope.h
+    auto_upgrade.cpp
+    auto_upgrade.h
     base_consist.cpp
     base_consist.h
     base_media_base.h

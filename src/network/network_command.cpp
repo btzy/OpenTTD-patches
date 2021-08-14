@@ -17,6 +17,8 @@
 
 #include "../safeguards.h"
 
+#include "auto_upgrade_coro.hpp"
+
 /** Table with all the callbacks we'll use for conversion*/
 static CommandCallback * const _callback_table[] = {
 	/* 0x00 */ nullptr,
@@ -41,7 +43,7 @@ static CommandCallback * const _callback_table[] = {
 	/* 0x13 */ CcCloneVehicle,
 	/* 0x14 */ CcGiveMoney,
 	/* 0x15 */ CcCreateGroup,
-	/* 0x16 */ CcFoundRandomTown,
+	/* 0x16 */ AutoUpgradeRailType::DoCommandPAwaiter::CallbackWrapper, // hopefully this works? // CcFoundRandomTown,
 	/* 0x17 */ CcRoadStop,
 	/* 0x18 */ CcBuildIndustry,
 	/* 0x19 */ CcStartStopVehicle,
